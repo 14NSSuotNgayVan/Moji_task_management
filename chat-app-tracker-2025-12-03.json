@@ -73,7 +73,7 @@
     {
       "title": "Create Friend Request Model & API",
       "feature": "Quản lý bạn bè",
-      "status": "in-progress",
+      "status": "completed",
       "priority": "high",
       "estimate": 1.5,
       "startDate": "",
@@ -83,17 +83,27 @@
     {
       "title": "Implement Get Friends List API",
       "feature": "Quản lý bạn bè",
-      "status": "in-progress",
+      "status": "completed",
       "priority": "high",
-      "estimate": 1,
-      "startDate": "",
-      "endDate": "",
+      "estimate": 0.5,
+      "startDate": "2025-12-03",
+      "endDate": "2025-12-03",
       "note": "Pagination support"
     },
     {
-      "title": "Implement Pending Requests API",
+      "title": "Implement Get Friend Requests List API",
       "feature": "Quản lý bạn bè",
-      "status": "in-progress",
+      "status": "completed",
+      "priority": "medium",
+      "estimate": 0.5,
+      "startDate": "2025-12-03",
+      "endDate": "2025-12-03",
+      "note": ""
+    },
+    {
+      "title": "Implement Accept/Decline Friend Requests API",
+      "feature": "Quản lý bạn bè",
+      "status": "completed",
       "priority": "medium",
       "estimate": 1,
       "startDate": "",
@@ -103,12 +113,22 @@
     {
       "title": "Implement Remove Friend API",
       "feature": "Quản lý bạn bè",
-      "status": "in-progress",
+      "status": "completed",
       "priority": "medium",
       "estimate": 0.5,
       "startDate": "",
       "endDate": "",
       "note": "Two-way delete"
+    },
+    {
+      "title": "Implement Find User API",
+      "feature": "Quản lý bạn bè",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "2025-12-04",
+      "endDate": "2025-12-04",
+      "note": ""
     },
     {
       "title": "Create Message Model",
