@@ -1,0 +1,386 @@
+{
+  "backend": [
+    {
+      "title": "Setup Express server & Middleware",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "CORS, body-parser"
+    },
+    {
+      "title": "Setup MongoDB",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "User, Chat, Friend models"
+    },
+    {
+      "title": "Implement User Registration API",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Hash password, validation"
+    },
+    {
+      "title": "Implement User Login API",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "JWT token generation"
+    },
+    {
+      "title": "Implement JWT Authentication",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Middleware verify token"
+    },
+    {
+      "title": "Implement Logout API",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "medium",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Token blacklist (optional)"
+    },
+    {
+      "title": "Implement Refresh token API",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": ""
+    },
+    {
+      "title": "Create Friend Request Model & API",
+      "feature": "Quản lý bạn bè",
+      "status": "in-progress",
+      "priority": "high",
+      "estimate": 1.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Send, receive, accept, reject"
+    },
+    {
+      "title": "Implement Get Friends List API",
+      "feature": "Quản lý bạn bè",
+      "status": "in-progress",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Pagination support"
+    },
+    {
+      "title": "Implement Pending Requests API",
+      "feature": "Quản lý bạn bè",
+      "status": "in-progress",
+      "priority": "medium",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Get incoming & outgoing requests"
+    },
+    {
+      "title": "Implement Remove Friend API",
+      "feature": "Quản lý bạn bè",
+      "status": "in-progress",
+      "priority": "medium",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Two-way delete"
+    },
+    {
+      "title": "Create Message Model",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Message schema, timestamps"
+    },
+    {
+      "title": "Setup WebSocket (Socket.IO)",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Real-time communication"
+    },
+    {
+      "title": "Implement Send Message API",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Save to DB & emit to socket"
+    },
+    {
+      "title": "Implement Get Chat History API",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Pagination, sorting"
+    },
+    {
+      "title": "Implement Delete Message API",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "low",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Owner only"
+    },
+    {
+      "title": "Implement Get User Profile API",
+      "feature": "Authentication",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Public profile info"
+    },
+    {
+      "title": "Implement Update Profile API",
+      "feature": "Authentication",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Avatar, bio, status"
+    },
+    {
+      "title": "Testing & Bug Fixes",
+      "feature": "All",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 2,
+      "startDate": "",
+      "endDate": "",
+      "note": "Unit & integration tests"
+    }
+  ],
+  "frontend": [
+    {
+      "title": "Setup Vite + React Project",
+      "feature": "Setup",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Install dependencies"
+    },
+    {
+      "title": "Setup React Router",
+      "feature": "Setup",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Page routing structure"
+    },
+    {
+      "title": "Setup State Management (Context/Zustand)",
+      "feature": "Setup",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Auth, chat, user states"
+    },
+    {
+      "title": "Setup Socket.IO Client",
+      "feature": "Setup",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Real-time events connection"
+    },
+    {
+      "title": "Setup Axios/Fetch for API calls",
+      "feature": "Setup",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "API client configuration"
+    },
+    {
+      "title": "Setup Sidebar",
+      "feature": "Setup",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": ""
+    },
+    {
+      "title": "Create Registration Form Component",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Form validation, error handling"
+    },
+    {
+      "title": "Create Login Form Component",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Remember me option"
+    },
+    {
+      "title": "Create Protected Routes",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Auth guard, redirects"
+    },
+    {
+      "title": "Create Authentication State with Zustand",
+      "feature": "Authentication",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": ""
+    },
+    {
+      "title": "Create Friends List Component",
+      "feature": "Quản lý bạn bè",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "List, search, status indicators"
+    },
+    {
+      "title": "Create Friend Requests Component",
+      "feature": "Quản lý bạn bè",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Accept/Reject buttons"
+    },
+    {
+      "title": "Create Add Friend Component",
+      "feature": "Quản lý bạn bè",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Search & send request"
+    },
+    {
+      "title": "Create Main Chat View Component",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Message list, input box"
+    },
+    {
+      "title": "Create Conversation List Component",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "List, search, last message"
+    },
+    {
+      "title": "Implement Real-time Message Display",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 1.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Socket.IO integration, scrolling"
+    },
+    {
+      "title": "Create User Profile Component",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 1,
+      "startDate": "",
+      "endDate": "",
+      "note": "Avatar, bio, settings"
+    },
+    {
+      "title": "Setup Tailwind CSS / CSS Modules",
+      "feature": "UI/UX",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0.5,
+      "startDate": "",
+      "endDate": "",
+      "note": "Design system setup"
+    },
+    {
+      "title": "Testing & Bug Fixes",
+      "feature": "All",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 2,
+      "startDate": "",
+      "endDate": "",
+      "note": "Responsive design, E2E tests"
+    }
+  ]
+}

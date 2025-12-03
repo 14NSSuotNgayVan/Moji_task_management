@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App - Project Tracker</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f5f5;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 14px;
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background: #667eea;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #5568d3;
+      }
+
+      .btn-success {
+        background: #28a745;
+        color: white;
+      }
+
+      .btn-success:hover {
+        background: #218838;
+      }
+
+      .btn-danger {
+        background: #dc3545;
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background: #c82333;
+      }
+
+      .btn-secondary {
+        background: #6c757d;
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background: #5a6268;
+      }
+
+      .btn-info {
+        background: #17a2b8;
+        color: white;
+      }
+
+      .btn-info:hover {
+        background: #138496;
+      }
+
+      .file-input-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .file-input-wrapper input[type="file"] {
+        display: none;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #ddd;
+      }
+
+      .tab-btn {
+        padding: 12px 24px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        color: #666;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .tab-btn:hover {
+        color: #333;
+      }
+
+      .tab-btn.active {
+        color: #667eea;
+        border-bottom-color: #667eea;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      thead {
+        background: #f8f9fa;
+        border-bottom: 2px solid #e9ecef;
+      }
+
+      th {
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+        color: #333;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        font-size: 14px;
+      }
+
+      tr:hover {
+        background: #f8f9fa;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .status-pending {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .status-in-progress {
+        background: #cfe2ff;
+        color: #084298;
+      }
+
+      .status-completed {
+        background: #d1e7dd;
+        color: #0f5132;
+      }
+
+      .priority-high {
+        background: #f8d7da;
+        color: #721c24;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .priority-medium {
+        background: #fff3cd;
+        color: #856404;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .priority-low {
+        background: #d4edda;
+        color: #155724;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .stat-card h3 {
+        color: #666;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .stat-card .number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal.active {
+        display: block;
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .modal-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .modal-close {
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        color: #999;
+        cursor: pointer;
+      }
+
+      .modal-close:hover {
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 30px;
+      }
+
+      .action-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .action-edit {
+        background: #41a0ff;
+        color: white;
+      }
+
+      .action-edit:hover {
+        background: #006fdd;
+      }
+
+      .action-delete {
+        background: #c82333;
+        color: white;
+      }
+
+      .action-delete:hover {
+        background: #ff808c;
+      }
+
+      .message {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        display: none;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 2000;
+      }
+
+      .message.active {
+        display: block;
+      }
+
+      .message-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .message-error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      .file-info {
+        background: #e7f3ff;
+        border: 1px solid #b3d9ff;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        color: #004085;
+      }
+
+      .file-info strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .file-section {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 6px;
+        background: white;
+      }
+
+      .file-section label {
+        font-weight: 600;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>📱 Chat App - Project Progress Tracker</h1>
+        <p>
+          Quản lý tiến độ phát triển dự án Chat App (Vite React + Node.js
+          Express + Mongoose)
+        </p>
+      </div>
+
+      <div class="file-section">
+        <label>💾 Quản lý dữ liệu:</label>
+        <button class="btn btn-info" onclick="exportJSON()">💾 Lưu JSON</button>
+        <button
+          class="btn btn-info"
+          onclick="document.getElementById('importFile').click()"
+        >
+          📂 Tải JSON
+        </button>
+        <input
+          type="file"
+          id="importFile"
+          accept=".json"
+          onchange="importJSON(event)"
+        />
+        <button class="btn btn-info" onclick="copyToClipboard()">
+          📋 Copy JSON
+        </button>
+        <button class="btn btn-danger" onclick="resetData()">⚠️ Reset</button>
+      </div>
+
+      <div class="message" id="message"></div>
+
+      <div class="controls">
+        <button class="btn btn-success" onclick="openAddModal()">
+          ➕ Thêm công việc mới
+        </button>
+        <button class="btn btn-primary" onclick="exportToCSV()">
+          📥 Xuất Excel
+        </button>
+        <button class="btn btn-secondary" onclick="loadData()">
+          🔄 Tải lại
+        </button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('backend')">
+          Backend (Node.js/Express)
+        </button>
+        <button class="tab-btn" onclick="switchTab('frontend')">
+          Frontend (React/Vite)
+        </button>
+      </div>
+
+      <!-- BACKEND TAB -->
+      <div id="backend" class="tab-content active">
+        <div class="stats">
+          <div class="stat-card">
+            <h3>Tổng công việc</h3>
+            <div class="number" id="backend-total">0</div>
+          </div>
+          <div class="stat-card">
+            <h3>Đã hoàn thành</h3>
+            <div class="number" style="color: #28a745" id="backend-completed">
+              0
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>Đang làm</h3>
+            <div class="number" style="color: #0066cc" id="backend-in-progress">
+              0
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>Chưa bắt đầu</h3>
+            <div class="number" style="color: #ff9800" id="backend-pending">
+              0
+            </div>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 3%">#</th>
+              <th style="width: 18%">Công việc</th>
+              <th style="width: 12%">Chức năng</th>
+              <th style="width: 12%">Trạng thái</th>
+              <th style="width: 10%">Ưu tiên</th>
+              <th style="width: 8%">Dự kiến</th>
+              <th style="width: 10%">Bắt đầu</th>
+              <th style="width: 10%">Kết thúc</th>
+              <th style="width: 10%">Hành động</th>
+            </tr>
+          </thead>
+          <tbody id="backend-table"></tbody>
+        </table>
+      </div>
+
+      <!-- FRONTEND TAB -->
+      <div id="frontend" class="tab-content">
+        <div class="stats">
+          <div class="stat-card">
+            <h3>Tổng công việc</h3>
+            <div class="number" id="frontend-total">0</div>
+          </div>
+          <div class="stat-card">
+            <h3>Đã hoàn thành</h3>
+            <div class="number" style="color: #28a745" id="frontend-completed">
+              0
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>Đang làm</h3>
+            <div
+              class="number"
+              style="color: #0066cc"
+              id="frontend-in-progress"
+            >
+              0
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>Chưa bắt đầu</h3>
+            <div class="number" style="color: #ff9800" id="frontend-pending">
+              0
+            </div>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 3%">#</th>
+              <th style="width: 18%">Công việc</th>
+              <th style="width: 12%">Chức năng</th>
+              <th style="width: 12%">Trạng thái</th>
+              <th style="width: 10%">Ưu tiên</th>
+              <th style="width: 8%">Dự kiến</th>
+              <th style="width: 10%">Bắt đầu</th>
+              <th style="width: 10%">Kết thúc</th>
+              <th style="width: 10%">Hành động</th>
+            </tr>
+          </thead>
+          <tbody id="frontend-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeEditModal()">&times;</span>
+        <div class="modal-header">Chỉnh sửa công việc</div>
+
+        <div class="form-group">
+          <label>Tên công việc:</label>
+          <input type="text" id="editTitle" placeholder="Nhập tên công việc" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Chức năng:</label>
+            <input type="text" id="editFeature" placeholder="Nhập chức năng" />
+          </div>
+          <div class="form-group">
+            <label>Trạng thái:</label>
+            <select id="editStatus">
+              <option value="pending">Chưa bắt đầu</option>
+              <option value="in-progress">Đang làm</option>
+              <option value="completed">Đã hoàn thành</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Độ ưu tiên:</label>
+            <select id="editPriority">
+              <option value="high">Cao</option>
+              <option value="medium">Trung</option>
+              <option value="low">Thấp</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Thời gian dự kiến (ngày):</label>
+            <input
+              type="number"
+              id="editEstimate"
+              placeholder="1"
+              step="0.5"
+              min="0"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ngày bắt đầu:</label>
+            <input type="date" id="editStartDate" />
+          </div>
+          <div class="form-group">
+            <label>Ngày kết thúc:</label>
+            <input type="date" id="editEndDate" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ghi chú:</label>
+          <textarea id="editNote" placeholder="Nhập ghi chú"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeEditModal()">
+            Hủy
+          </button>
+          <button class="btn btn-success" onclick="saveEdit()">
+            Lưu thay đổi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div id="addModal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeAddModal()">&times;</span>
+        <div class="modal-header">Thêm công việc mới</div>
+
+        <div class="form-group">
+          <label>Loại dự án:</label>
+          <select id="addType">
+            <option value="backend">Backend (Node.js/Express)</option>
+            <option value="frontend">Frontend (React/Vite)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tên công việc:</label>
+          <input type="text" id="addTitle" placeholder="Nhập tên công việc" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Chức năng:</label>
+            <input type="text" id="addFeature" placeholder="Nhập chức năng" />
+          </div>
+          <div class="form-group">
+            <label>Trạng thái:</label>
+            <select id="addStatus">
+              <option value="pending">Chưa bắt đầu</option>
+              <option value="in-progress">Đang làm</option>
+              <option value="completed">Đã hoàn thành</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Độ ưu tiên:</label>
+            <select id="addPriority">
+              <option value="high">Cao</option>
+              <option value="medium">Trung</option>
+              <option value="low">Thấp</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Thời gian dự kiến (ngày):</label>
+            <input
+              type="number"
+              id="addEstimate"
+              placeholder="1"
+              step="0.5"
+              min="0"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ngày bắt đầu:</label>
+            <input type="date" id="addStartDate" />
+          </div>
+          <div class="form-group">
+            <label>Ngày kết thúc:</label>
+            <input type="date" id="addEndDate" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ghi chú:</label>
+          <textarea id="addNote" placeholder="Nhập ghi chú"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeAddModal()">
+            Hủy
+          </button>
+          <button class="btn btn-success" onclick="saveAdd()">
+            Thêm công việc
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let tasks = {};
+      let editingIndex = -1;
+      let editingType = "";
+
+      const defaultData = {
+        backend: [
+          {
+            title: "Setup Express server & Middleware",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "CORS, body-parser",
+          },
+          {
+            title: "Setup MongoDB & Mongoose Models",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "User, Chat, Friend models",
+          },
+          {
+            title: "Implement User Registration API",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Hash password, validation",
+          },
+          {
+            title: "Implement User Login API",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "JWT token generation",
+          },
+          {
+            title: "Implement JWT Authentication",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Middleware verify token",
+          },
+          {
+            title: "Implement Logout API",
+            feature: "Authentication",
+            status: "pending",
+            priority: "medium",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Token blacklist (optional)",
+          },
+          {
+            title: "Create Friend Request Model & API",
+            feature: "Quản lý bạn bè",
+            status: "pending",
+            priority: "high",
+            estimate: 1.5,
+            startDate: "",
+            endDate: "",
+            note: "Send, receive, accept, reject",
+          },
+          {
+            title: "Implement Get Friends List API",
+            feature: "Quản lý bạn bè",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Pagination support",
+          },
+          {
+            title: "Implement Pending Requests API",
+            feature: "Quản lý bạn bè",
+            status: "pending",
+            priority: "medium",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Get incoming & outgoing requests",
+          },
+          {
+            title: "Implement Remove Friend API",
+            feature: "Quản lý bạn bè",
+            status: "pending",
+            priority: "medium",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Two-way delete",
+          },
+          {
+            title: "Create Message Model",
+            feature: "Chat",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Message schema, timestamps",
+          },
+          {
+            title: "Setup WebSocket (Socket.IO)",
+            feature: "Chat",
+            status: "pending",
+            priority: "high",
+            estimate: 1.5,
+            startDate: "",
+            endDate: "",
+            note: "Real-time communication",
+          },
+          {
+            title: "Implement Send Message API",
+            feature: "Chat",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Save to DB & emit to socket",
+          },
+          {
+            title: "Implement Get Chat History API",
+            feature: "Chat",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Pagination, sorting",
+          },
+          {
+            title: "Implement Delete Message API",
+            feature: "Chat",
+            status: "pending",
+            priority: "low",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Owner only",
+          },
+          {
+            title: "Implement Get User Profile API",
+            feature: "Authentication",
+            status: "pending",
+            priority: "medium",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Public profile info",
+          },
+          {
+            title: "Implement Update Profile API",
+            feature: "Authentication",
+            status: "pending",
+            priority: "medium",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Avatar, bio, status",
+          },
+          {
+            title: "Testing & Bug Fixes",
+            feature: "All",
+            status: "pending",
+            priority: "medium",
+            estimate: 2,
+            startDate: "",
+            endDate: "",
+            note: "Unit & integration tests",
+          },
+        ],
+        frontend: [
+          {
+            title: "Setup Vite + React Project",
+            feature: "Setup",
+            status: "pending",
+            priority: "high",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Install dependencies",
+          },
+          {
+            title: "Setup React Router",
+            feature: "Setup",
+            status: "pending",
+            priority: "high",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Page routing structure",
+          },
+          {
+            title: "Setup State Management (Context/Zustand)",
+            feature: "Setup",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Auth, chat, user states",
+          },
+          {
+            title: "Setup Socket.IO Client",
+            feature: "Setup",
+            status: "pending",
+            priority: "high",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Real-time events connection",
+          },
+          {
+            title: "Setup Axios/Fetch for API calls",
+            feature: "Setup",
+            status: "pending",
+            priority: "high",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "API client configuration",
+          },
+          {
+            title: "Create Registration Form Component",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Form validation, error handling",
+          },
+          {
+            title: "Create Login Form Component",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Remember me option",
+          },
+          {
+            title: "Create Protected Routes",
+            feature: "Authentication",
+            status: "pending",
+            priority: "high",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Auth guard, redirects",
+          },
+          {
+            title: "Create Friends List Component",
+            feature: "Quản lý bạn bè",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "List, search, status indicators",
+          },
+          {
+            title: "Create Friend Requests Component",
+            feature: "Quản lý bạn bè",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Accept/Reject buttons",
+          },
+          {
+            title: "Create Add Friend Component",
+            feature: "Quản lý bạn bè",
+            status: "pending",
+            priority: "medium",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Search & send request",
+          },
+          {
+            title: "Create Main Chat View Component",
+            feature: "Chat",
+            status: "pending",
+            priority: "high",
+            estimate: 1.5,
+            startDate: "",
+            endDate: "",
+            note: "Message list, input box",
+          },
+          {
+            title: "Create Conversation List Component",
+            feature: "Chat",
+            status: "pending",
+            priority: "high",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "List, search, last message",
+          },
+          {
+            title: "Implement Real-time Message Display",
+            feature: "Chat",
+            status: "pending",
+            priority: "high",
+            estimate: 1.5,
+            startDate: "",
+            endDate: "",
+            note: "Socket.IO integration, scrolling",
+          },
+          {
+            title: "Create User Profile Component",
+            feature: "Chat",
+            status: "pending",
+            priority: "medium",
+            estimate: 1,
+            startDate: "",
+            endDate: "",
+            note: "Avatar, bio, settings",
+          },
+          {
+            title: "Setup Tailwind CSS / CSS Modules",
+            feature: "UI/UX",
+            status: "pending",
+            priority: "medium",
+            estimate: 0.5,
+            startDate: "",
+            endDate: "",
+            note: "Design system setup",
+          },
+          {
+            title: "Testing & Bug Fixes",
+            feature: "All",
+            status: "pending",
+            priority: "medium",
+            estimate: 2,
+            startDate: "",
+            endDate: "",
+            note: "Responsive design, E2E tests",
+          },
+        ],
+      };
+
+      function loadData() {
+        try {
+          const stored = localStorage.getItem("chatAppTasks");
+          if (stored) {
+            tasks = JSON.parse(stored);
+          } else {
+            tasks = JSON.parse(JSON.stringify(defaultData));
+            saveData();
+          }
+          renderTables();
+          showMessage("✅ Dữ liệu đã được tải thành công", "success");
+        } catch (error) {
+          console.error("Error loading data:", error);
+          tasks = JSON.parse(JSON.stringify(defaultData));
+          saveData();
+          renderTables();
+          showMessage("⚠️ Lỗi khi tải dữ liệu", "error");
+        }
+      }
+
+      function saveData() {
+        try {
+          localStorage.setItem("chatAppTasks", JSON.stringify(tasks));
+        } catch (error) {
+          console.error("Error saving data:", error);
+          showMessage("❌ Lỗi khi lưu dữ liệu", "error");
+        }
+      }
+
+      function exportJSON() {
+        try {
+          const dataStr = JSON.stringify(tasks, null, 2);
+          const dataBlob = new Blob([dataStr], { type: "application/json" });
+          const url = URL.createObjectURL(dataBlob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `chat-app-tracker-${
+            new Date().toISOString().split("T")[0]
+          }.json`;
+          link.click();
+          URL.revokeObjectURL(url);
+          showMessage("✅ Dữ liệu đã được lưu thành file JSON", "success");
+        } catch (error) {
+          console.error("Error exporting JSON:", error);
+          showMessage("❌ Lỗi khi lưu file JSON", "error");
+        }
+      }
+
+      function importJSON(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const importedData = JSON.parse(e.target.result);
+
+            // Validate JSON structure
+            if (!importedData.backend || !importedData.frontend) {
+              throw new Error("Định dạng JSON không hợp lệ");
+            }
+
+            tasks = importedData;
+            saveData();
+            renderTables();
+            showMessage("✅ Dữ liệu đã được import thành công", "success");
+            document.getElementById("importFile").value = "";
+          } catch (error) {
+            console.error("Error importing JSON:", error);
+            showMessage("❌ Lỗi: " + error.message, "error");
+            document.getElementById("importFile").value = "";
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      function copyToClipboard() {
+        try {
+          const dataStr = JSON.stringify(tasks, null, 2);
+          navigator.clipboard
+            .writeText(dataStr)
+            .then(() => {
+              showMessage("✅ JSON đã được copy vào clipboard", "success");
+            })
+            .catch((err) => {
+              console.error("Error copying to clipboard:", err);
+              // Fallback for older browsers
+              const textArea = document.createElement("textarea");
+              textArea.value = dataStr;
+              document.body.appendChild(textArea);
+              textArea.select();
+              document.execCommand("copy");
+              document.body.removeChild(textArea);
+              showMessage("✅ JSON đã được copy vào clipboard", "success");
+            });
+        } catch (error) {
+          console.error("Error copying JSON:", error);
+          showMessage("❌ Lỗi khi copy dữ liệu", "error");
+        }
+      }
+
+      function resetData() {
+        if (
+          confirm(
+            "🔴 Bạn chắc chắn muốn reset về dữ liệu gốc? Tất cả thay đổi sẽ mất!"
+          )
+        ) {
+          tasks = JSON.parse(JSON.stringify(defaultData));
+          saveData();
+          renderTables();
+          showMessage("✅ Dữ liệu đã được reset", "success");
+        }
+      }
+
+      function renderTables() {
+        renderTable("backend");
+        renderTable("frontend");
+      }
+
+      function renderTable(type) {
+        const tbody = document.getElementById(`${type}-table`);
+        tbody.innerHTML = "";
+
+        const typeData = tasks[type] || [];
+        let completed = 0,
+          inProgress = 0;
+
+        typeData.forEach((task, index) => {
+          if (task.status === "completed") completed++;
+          if (task.status === "in-progress") inProgress++;
+
+          const statusClass = `status-${task.status}`;
+          const statusText = {
+            pending: "Chưa bắt đầu",
+            "in-progress": "Đang làm",
+            completed: "Đã hoàn thành",
+          }[task.status];
+
+          const priorityClass = `priority-${task.priority}`;
+          const priorityText = {
+            high: "Cao",
+            medium: "Trung",
+            low: "Thấp",
+          }[task.priority];
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td><strong>${task.title}</strong></td>
+                    <td>${task.feature}</td>
+                    <td><span class="status-badge ${statusClass}" onclick="quickChangeStatus('${type}', ${index})" title="Click để thay đổi">${statusText}</span></td>
+                    <td><span class="${priorityClass}" onclick="editTask('${type}', ${index})" title="Click để sửa">${priorityText}</span></td>
+                    <td>${task.estimate}</td>
+                    <td>${
+                      task.startDate
+                        ? new Date(task.startDate).toLocaleDateString("vi-VN")
+                        : "-"
+                    }</td>
+                    <td>${
+                      task.endDate
+                        ? new Date(task.endDate).toLocaleDateString("vi-VN")
+                        : "-"
+                    }</td>
+                    <td>
+                        <button class="action-btn action-edit" onclick="editTask('${type}', ${index})" title="Sửa">✏️</button>
+                        <button class="action-btn action-delete" onclick="deleteTask('${type}', ${index})" title="Xóa">❌</button>
+                    </td>
+                `;
+          tbody.appendChild(row);
+        });
+
+        // Update stats
+        const total = typeData.length;
+        const pending = total - completed - inProgress;
+        document.getElementById(`${type}-total`).textContent = total;
+        document.getElementById(`${type}-completed`).textContent = completed;
+        document.getElementById(`${type}-in-progress`).textContent = inProgress;
+        document.getElementById(`${type}-pending`).textContent = pending;
+      }
+
+      function quickChangeStatus(type, index) {
+        const statuses = ["pending", "in-progress", "completed"];
+        const current = tasks[type][index].status;
+        const currentIdx = statuses.indexOf(current);
+        const nextIdx = (currentIdx + 1) % statuses.length;
+        tasks[type][index].status = statuses[nextIdx];
+        saveData();
+        renderTables();
+      }
+
+      function editTask(type, index) {
+        editingType = type;
+        editingIndex = index;
+        const task = tasks[type][index];
+
+        document.getElementById("editTitle").value = task.title;
+        document.getElementById("editFeature").value = task.feature;
+        document.getElementById("editStatus").value = task.status;
+        document.getElementById("editPriority").value = task.priority;
+        document.getElementById("editEstimate").value = task.estimate;
+        document.getElementById("editStartDate").value = task.startDate || "";
+        document.getElementById("editEndDate").value = task.endDate || "";
+        document.getElementById("editNote").value = task.note || "";
+
+        document.getElementById("editModal").classList.add("active");
+      }
+
+      function closeEditModal() {
+        document.getElementById("editModal").classList.remove("active");
+      }
+
+      function saveEdit() {
+        const title = document.getElementById("editTitle").value.trim();
+        const feature = document.getElementById("editFeature").value.trim();
+
+        if (!title || !feature) {
+          showMessage("⚠️ Vui lòng nhập tên công việc và chức năng", "error");
+          return;
+        }
+
+        tasks[editingType][editingIndex] = {
+          title: title,
+          feature: feature,
+          status: document.getElementById("editStatus").value,
+          priority: document.getElementById("editPriority").value,
+          estimate:
+            parseFloat(document.getElementById("editEstimate").value) || 0,
+          startDate: document.getElementById("editStartDate").value,
+          endDate: document.getElementById("editEndDate").value,
+          note: document.getElementById("editNote").value,
+        };
+        saveData();
+        renderTables();
+        closeEditModal();
+        showMessage("✅ Công việc đã được cập nhật", "success");
+      }
+
+      function deleteTask(type, index) {
+        if (confirm("⚠️ Bạn chắc chắn muốn xóa công việc này?")) {
+          tasks[type].splice(index, 1);
+          saveData();
+          renderTables();
+          showMessage("✅ Công việc đã được xóa", "success");
+        }
+      }
+
+      function openAddModal() {
+        document.getElementById("addTitle").value = "";
+        document.getElementById("addFeature").value = "";
+        document.getElementById("addStatus").value = "pending";
+        document.getElementById("addPriority").value = "high";
+        document.getElementById("addEstimate").value = "";
+        document.getElementById("addStartDate").value = "";
+        document.getElementById("addEndDate").value = "";
+        document.getElementById("addNote").value = "";
+        document.getElementById("addModal").classList.add("active");
+      }
+
+      function closeAddModal() {
+        document.getElementById("addModal").classList.remove("active");
+      }
+
+      function saveAdd() {
+        const type = document.getElementById("addType").value;
+        const title = document.getElementById("addTitle").value.trim();
+        const feature = document.getElementById("addFeature").value.trim();
+
+        if (!title || !feature) {
+          showMessage("⚠️ Vui lòng nhập tên công việc và chức năng", "error");
+          return;
+        }
+
+        const newTask = {
+          title: title,
+          feature: feature,
+          status: document.getElementById("addStatus").value,
+          priority: document.getElementById("addPriority").value,
+          estimate:
+            parseFloat(document.getElementById("addEstimate").value) || 0,
+          startDate: document.getElementById("addStartDate").value,
+          endDate: document.getElementById("addEndDate").value,
+          note: document.getElementById("addNote").value,
+        };
+
+        tasks[type].push(newTask);
+        saveData();
+        renderTables();
+        closeAddModal();
+        showMessage("✅ Công việc đã được thêm", "success");
+      }
+
+      function switchTab(tabName) {
+        document.querySelectorAll(".tab-content").forEach((tab) => {
+          tab.classList.remove("active");
+        });
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        document.getElementById(tabName).classList.add("active");
+        event.target.classList.add("active");
+      }
+
+      function exportToCSV() {
+        let csv = [];
+        csv.push("Chat App - Project Tracker Export");
+        csv.push(`Export ngày: ${new Date().toLocaleDateString("vi-VN")}`);
+        csv.push("");
+
+        ["backend", "frontend"].forEach((type) => {
+          csv.push(
+            `${
+              type === "backend"
+                ? "BACKEND - Node.js/Express"
+                : "FRONTEND - React/Vite"
+            }`
+          );
+          csv.push("");
+          csv.push(
+            [
+              "STT",
+              "Công việc",
+              "Chức năng",
+              "Trạng thái",
+              "Độ ưu tiên",
+              "Dự kiến (ngày)",
+              "Ngày bắt đầu",
+              "Ngày kết thúc",
+              "Ghi chú",
+            ].join(",")
+          );
+
+          tasks[type].forEach((task, index) => {
+            const row = [
+              index + 1,
+              task.title,
+              task.feature,
+              {
+                pending: "Chưa bắt đầu",
+                "in-progress": "Đang làm",
+                completed: "Đã hoàn thành",
+              }[task.status],
+              {
+                high: "Cao",
+                medium: "Trung",
+                low: "Thấp",
+              }[task.priority],
+              task.estimate,
+              task.startDate
+                ? new Date(task.startDate).toLocaleDateString("vi-VN")
+                : "",
+              task.endDate
+                ? new Date(task.endDate).toLocaleDateString("vi-VN")
+                : "",
+              task.note || "",
+            ];
+            csv.push(row.map((cell) => `"${cell}"`).join(","));
+          });
+          csv.push("");
+          csv.push("");
+        });
+
+        const csvContent = csv.join("\n");
+        const blob = new Blob(["\uFEFF" + csvContent], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `Chat-App-Tracker-${
+          new Date().toISOString().split("T")[0]
+        }.csv`;
+        link.click();
+        showMessage("✅ Dữ liệu đã được xuất ra Excel", "success");
+      }
+
+      function showMessage(text, type) {
+        const msg = document.getElementById("message");
+        msg.textContent = text;
+        msg.className = `message active message-${type}`;
+        setTimeout(() => {
+          msg.classList.remove("active");
+        }, 4000);
+      }
+
+      // Initialize
+      window.addEventListener("load", () => {
+        loadData();
+      });
+
+      // Close modals on outside click
+      window.onclick = function (event) {
+        const editModal = document.getElementById("editModal");
+        const addModal = document.getElementById("addModal");
+        if (event.target === editModal) {
+          editModal.classList.remove("active");
+        }
+        if (event.target === addModal) {
+          addModal.classList.remove("active");
+        }
+      };
+    </script>
+  </body>
+</html>
