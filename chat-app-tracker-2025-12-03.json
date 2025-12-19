@@ -123,7 +123,7 @@
     {
       "title": "Implement Find User API",
       "feature": "Quản lý bạn bè",
-      "status": "pending",
+      "status": "completed",
       "priority": "high",
       "estimate": 0.5,
       "startDate": "2025-12-04",
@@ -133,41 +133,41 @@
     {
       "title": "Create Message Model",
       "feature": "Chat",
-      "status": "pending",
+      "status": "completed",
       "priority": "high",
-      "estimate": 1,
-      "startDate": "",
-      "endDate": "",
+      "estimate": 0.5,
+      "startDate": "2025-12-04",
+      "endDate": "2025-12-04",
       "note": "Message schema, timestamps"
     },
     {
       "title": "Setup WebSocket (Socket.IO)",
       "feature": "Chat",
-      "status": "pending",
+      "status": "completed",
       "priority": "high",
       "estimate": 1.5,
-      "startDate": "",
-      "endDate": "",
+      "startDate": "2025-12-17",
+      "endDate": "2025-12-17",
       "note": "Real-time communication"
     },
     {
       "title": "Implement Send Message API",
       "feature": "Chat",
-      "status": "pending",
+      "status": "completed",
       "priority": "high",
-      "estimate": 1,
-      "startDate": "",
-      "endDate": "",
+      "estimate": 2,
+      "startDate": "2025-12-09",
+      "endDate": "2025-12-10",
       "note": "Save to DB & emit to socket"
     },
     {
       "title": "Implement Get Chat History API",
       "feature": "Chat",
-      "status": "pending",
+      "status": "completed",
       "priority": "high",
       "estimate": 1,
-      "startDate": "",
-      "endDate": "",
+      "startDate": "2025-12-09",
+      "endDate": "2025-12-10",
       "note": "Pagination, sorting"
     },
     {
@@ -182,8 +182,8 @@
     },
     {
       "title": "Implement Get User Profile API",
-      "feature": "Authentication",
-      "status": "pending",
+      "feature": "Profile",
+      "status": "completed",
       "priority": "medium",
       "estimate": 0.5,
       "startDate": "",
@@ -192,7 +192,7 @@
     },
     {
       "title": "Implement Update Profile API",
-      "feature": "Authentication",
+      "feature": "Profile",
       "status": "pending",
       "priority": "medium",
       "estimate": 0.5,
@@ -209,6 +209,96 @@
       "startDate": "",
       "endDate": "",
       "note": "Unit & integration tests"
+    },
+    {
+      "title": "Implement Get Conversations API",
+      "feature": "Chat",
+      "status": "completed",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "2025-12-09",
+      "endDate": "2025-12-09",
+      "note": ""
+    },
+    {
+      "title": "API find user's own Friends",
+      "feature": "Tìm kiếm",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tìm kiếm bạn đã kết bạn"
+    },
+    {
+      "title": "Find message by conversation",
+      "feature": "Tìm kiếm",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tìm kiếm tin nhắn theo cuộc hội thoại"
+    },
+    {
+      "title": "Find messages by all converstion",
+      "feature": "Tìm kiếm",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tìm kiếm tin nhắn trong tất cả cuộc hội thoại"
+    },
+    {
+      "title": "API update conversation informations",
+      "feature": "Conversation",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Viết API cập nhật thông tin hội thoại: Thành viên, Tên cuộc hội thoại, ảnh nền, quyền trong nhóm, biệt danh"
+    },
+    {
+      "title": "API Upload file",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": ""
+    },
+    {
+      "title": "System Message",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tin nhắn hệ thống khi thêm/xóa thành viên trong nhóm, tạo nhóm, thay đổi thông tin trong cuộc hội thoại"
+    },
+    {
+      "title": "Implement Reply to message in message API",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Thêm logic trả lời tin nhắn của người khác vào api/model của tin nhắn"
+    },
+    {
+      "title": "Notification API",
+      "feature": "Socket",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Thông báo khi có kết bạn mới, có người chấp nhận kết bạn"
     }
   ],
   "frontend": [
@@ -355,12 +445,12 @@
     {
       "title": "Create Conversation List Component",
       "feature": "Chat",
-      "status": "pending",
+      "status": "completed",
       "priority": "high",
       "estimate": 1,
-      "startDate": "",
-      "endDate": "",
-      "note": "List, search, last message"
+      "startDate": "2025-12-11",
+      "endDate": "2025-12-11",
+      "note": "List, last message"
     },
     {
       "title": "Implement Real-time Message Display",
@@ -401,6 +491,146 @@
       "startDate": "",
       "endDate": "",
       "note": "Responsive design, E2E tests"
+    },
+    {
+      "title": "Search Conversation message",
+      "feature": "Tìm kiếm",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tìm kiếm tin nhắn trong cuộc hội thoại"
+    },
+    {
+      "title": "Search all messages",
+      "feature": "Tìm kiếm",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tìm kiếm tin nhắn trong tất cả cuộc hội thoại"
+    },
+    {
+      "title": "Profile UI",
+      "feature": "Profile",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Xem profile : cá nhân/bạn bè/người lạ"
+    },
+    {
+      "title": "Conversation sidebar",
+      "feature": "Conversation",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Side bar cho cuộc hội thoại"
+    },
+    {
+      "title": "Conversation Update Information Logic",
+      "feature": "Conversation",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Cập nhật thông tin cho cuộc hội thoại: Thành viên, Tên, Ảnh nền, Quyền, Biệt danh"
+    },
+    {
+      "title": "Integrate Upload file API for message",
+      "feature": "Upload file",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Cập nhật luồng upload file cho tin nhắn"
+    },
+    {
+      "title": "System message for conversation component",
+      "feature": "System message",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Viết component hiển thị thông báo hệ thống + logic khi nhận thông báo hệ thống từ socket"
+    },
+    {
+      "title": "Implement Logic and UI Reply To Message",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Logic và UI trả lời tin nhắn trong cuộc hội thoại"
+    },
+    {
+      "title": "User notification",
+      "feature": "Notification",
+      "status": "pending",
+      "priority": "medium",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Thông báo khi có lời mời kết bạn/ chấp nhận kết bạn"
+    },
+    {
+      "title": "Implement Logic Update Profile Information",
+      "feature": "Profile",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Cập nhật thông tin profile : Ảnh bìa / avt/ thông tin khác..,"
+    },
+    {
+      "title": "Implement logic scroll message",
+      "feature": "Chat",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Thêm logic scroll xuống cuối đoạn chat khi có tin nhắn mới, fetch thêm tin nhắn cũ khi cuộn lên trên cùng"
+    },
+    {
+      "title": "Update Socket Secret Token",
+      "feature": "Socket",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Cập nhật token cho socket bằng token riêng của socket( hiện tại đang dùng token của REST)"
+    },
+    {
+      "title": "Search User's Friends",
+      "feature": "Search",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tìm kiếm bạn bè đã có"
+    },
+    {
+      "title": "Search User's not Fiends",
+      "feature": "Search",
+      "status": "pending",
+      "priority": "high",
+      "estimate": 0,
+      "startDate": "",
+      "endDate": "",
+      "note": "Tìm kiếm người chưa là bạn"
     }
   ]
 }
